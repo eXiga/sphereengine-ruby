@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'http'
+gem 'rake'
 
 group :development do
   gem 'pry'

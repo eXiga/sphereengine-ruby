@@ -1,0 +1,9 @@
+cache: bundler
+
+language: ruby
+
+rvm:
+  - 1.9.3
+  - 2.2.0
+
+bundler_args: --without development --retry=3 --jobs=3
