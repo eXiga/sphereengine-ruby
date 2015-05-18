@@ -15,14 +15,16 @@ describe SphereEngine::SphereEngineClient do
   describe '#test_connection' do
     before :each do
       stub_request(:get, SphereEngine::Request::BASE_URL + 
-                         SphereEngine::Request::TEST_ENDPOINT + @client.access_token.to_s).
+                         SphereEngine::Request::TEST_ENDPOINT).
+      with(query: {"access_token" => @client.access_token }).
       to_return(body: fixture('test_connection_response.json'))
       @response = @client.test_connection 
     end
 
     it 'should make test request to api' do
       expect(WebMock).to have_requested(:get, SphereEngine::Request::BASE_URL + 
-                                              SphereEngine::Request::TEST_ENDPOINT + @client.access_token.to_s)
+                                              SphereEngine::Request::TEST_ENDPOINT).
+                         with(query: {"access_token" => @client.access_token })
     end
 
     it 'should get valid response' do
@@ -40,14 +42,16 @@ describe SphereEngine::SphereEngineClient do
   describe '#languages' do
     before :each do
       stub_request(:get, SphereEngine::Request::BASE_URL +
-                         SphereEngine::Request::LANGUAGES_ENDPOINT + @client.access_token.to_s).
+                         SphereEngine::Request::LANGUAGES_ENDPOINT).
+      with(query: {"access_token" => @client.access_token }).
       to_return(body: fixture('languages_response.json'))
       @response = @client.languages
     end
 
     it 'should make languages request to api' do
       expect(WebMock).to have_requested(:get, SphereEngine::Request::BASE_URL +
-                                              SphereEngine::Request::LANGUAGES_ENDPOINT + @client.access_token.to_s)
+                                              SphereEngine::Request::LANGUAGES_ENDPOINT).
+                         with(query: {"access_token" => @client.access_token })
     end
 
     it 'should get valid response' do
@@ -62,14 +66,17 @@ describe SphereEngine::SphereEngineClient do
   describe '#send_submission' do
     before :each do
       stub_request(:post, SphereEngine::Request::BASE_URL +
-                          SphereEngine::Request::SUBMISSIONS_ENDPOINT + @client.access_token.to_s).
+                          SphereEngine::Request::SUBMISSIONS_ENDPOINT).
+      with(query: {"access_token" => @client.access_token }).
       to_return(body: fixture('submissions_response.json'))
-      @response = @client.send_submission(nil, 11, nil)
+      @response = @client.send_submission("#include <iostream> int main () { std::cout << \"lol\" << std::endl; return 0; }", 
+                                           11, nil)
     end
 
     it 'should make submissions request to api' do
       expect(WebMock).to have_requested(:post, SphereEngine::Request::BASE_URL +
-                                               SphereEngine::Request::SUBMISSIONS_ENDPOINT + @client.access_token.to_s)
+                                               SphereEngine::Request::SUBMISSIONS_ENDPOINT).
+                         with(query: {"access_token" => @client.access_token })
     end
 
     it 'should get valid response' do
@@ -84,15 +91,26 @@ describe SphereEngine::SphereEngineClient do
   describe '#fetch_submission' do
     before :each do
       stub_request(:get, SphereEngine::Request::BASE_URL +
-                         SphereEngine::Request::FETCH_SUBMISSION_ENDPOINT.sub(':id', 1.to_s) + @client.access_token.to_s).
+                         SphereEngine::Request::FETCH_SUBMISSION_ENDPOINT.sub(':id', 1.to_s)).
+      with(query: {"access_token" => @client.access_token, 
+                   "withCmpinfo" => "true",
+                   "withInput" => "true",
+                   "withOutput" => "true",
+                   "withSource" => "true",
+                   "withStderr" => "true"}).
       to_return(body: fixture('fetch_submission_response.json'))
       @response = @client.fetch_submission(1)
     end
 
     it 'should make fetch submission request to api' do
       expect(WebMock).to have_requested(:get, SphereEngine::Request::BASE_URL +
-                                              SphereEngine::Request::FETCH_SUBMISSION_ENDPOINT.sub(':id', '1') + 
-                                              @client.access_token.to_s)
+                                              SphereEngine::Request::FETCH_SUBMISSION_ENDPOINT.sub(':id', '1')).
+      with(query: {"access_token" => @client.access_token, 
+                   "withCmpinfo" => "true",
+                   "withInput" => "true",
+                   "withOutput" => "true",
+                   "withSource" => "true",
+                   "withStderr" => "true"})
     end
 
     it 'should get valid response' do
