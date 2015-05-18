@@ -8,3 +8,12 @@ A Ruby interface to the SphereEngine API.
 
 ## Installation
     gem install sphereengine-ruby
+
+Contribution
+------------
+
+There are one thing left I want to add in this repo:
+
+* Problems API
+
+If you have some ideas about this gem - feel free to create pull request.
