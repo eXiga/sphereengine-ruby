@@ -17,7 +17,7 @@ describe SphereEngine::SphereEngineClient do
       stub_request(:get, SphereEngine::Request::BASE_URL + 
                          SphereEngine::Request::TEST_ENDPOINT + @client.access_token.to_s).
       to_return(body: fixture('test_connection_response.json'))
-      @response = JSON.parse @client.test_connection 
+      @response = @client.test_connection 
     end
 
     it 'should make test request to api' do
@@ -42,7 +42,7 @@ describe SphereEngine::SphereEngineClient do
       stub_request(:get, SphereEngine::Request::BASE_URL +
                          SphereEngine::Request::LANGUAGES_ENDPOINT + @client.access_token.to_s).
       to_return(body: fixture('languages_response.json'))
-      @response = JSON.parse @client.languages
+      @response = @client.languages
     end
 
     it 'should make languages request to api' do

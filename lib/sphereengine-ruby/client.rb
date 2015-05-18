@@ -8,12 +8,12 @@ module SphereEngine
 
     def test_connection
       uri = URI(SphereEngine::Request::BASE_URL + SphereEngine::Request::TEST_ENDPOINT + access_token.to_s)
-      Net::HTTP.get(uri)
+      JSON.parse Net::HTTP.get(uri)
     end
 
     def languages
       uri = URI(SphereEngine::Request::BASE_URL + SphereEngine::Request::LANGUAGES_ENDPOINT + access_token.to_s)
-      Net::HTTP.get(uri)
+      JSON.parse Net::HTTP.get(uri)
     end
   end
 end
