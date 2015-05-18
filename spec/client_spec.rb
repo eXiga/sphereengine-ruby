@@ -80,4 +80,41 @@ describe SphereEngine::SphereEngineClient do
       expect(@response.key?('id')).to eq true
     end
   end
+
+  describe '#fetch_submission' do
+    before :each do
+      stub_request(:get, SphereEngine::Request::BASE_URL +
+                         SphereEngine::Request::FETCH_SUBMISSION_ENDPOINT.sub(':id', 1.to_s) + @client.access_token.to_s).
+      to_return(body: fixture('fetch_submission_response.json'))
+      @response = @client.fetch_submission(1)
+    end
+
+    it 'should make fetch submission request to api' do
+      expect(WebMock).to have_requested(:get, SphereEngine::Request::BASE_URL +
+                                              SphereEngine::Request::FETCH_SUBMISSION_ENDPOINT.sub(':id', '1') + 
+                                              @client.access_token.to_s)
+    end
+
+    it 'should get valid response' do
+      expect(@response).to be_an_instance_of Hash
+    end
+
+    it 'should get valid response content' do
+      expect(@response['langId']).to eq 21
+      expect(@response['langName']).to eq 'Haskell'
+      expect(@response['langVersion']).to eq '4.1'
+      expect(@response['time']).to eq 3.0
+      expect(@response['date']).to eq "2015-05-18"
+      expect(@response['status']).to eq 0
+      expect(@response['result']).to eq 15
+      expect(@response['memory']).to eq 3000
+      expect(@response['signal']).to eq 28
+      expect(@response['source']).to eq "#include <iostream> int main () { std::cout << \"lol\" << std::endl; return 0; }"
+      expect(@response['input']).to eq '0'
+      expect(@response['output']).to eq 'lol'
+      expect(@response['stderr']).to eq ''
+      expect(@response['cmpinfo']).to eq ''
+    end
+
+  end
 end

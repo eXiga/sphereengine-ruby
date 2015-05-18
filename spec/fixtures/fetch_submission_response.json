@@ -1,0 +1,16 @@
+{
+  "langId": 21,
+  "langName": "Haskell",
+  "langVersion": "4.1",
+  "time": 3.0,
+  "date": "2015-05-18",
+  "status": 0,
+  "result": 15,
+  "memory": 3000,
+  "signal": 28,
+  "source": "#include <iostream> int main () { std::cout << \"lol\" << std::endl; return 0; }",
+  "input": "0",
+  "output": "lol",
+  "stderr": "",
+  "cmpinfo": ""
+} 

@@ -21,5 +21,12 @@ module SphereEngine
       response = Net::HTTP.post_form(uri, {'sourceCode' => source_code, 'language' => language, 'input' => input})
       JSON.parse response.body
     end
+
+    def fetch_submission(id)
+      uri = URI(SphereEngine::Request::BASE_URL + 
+                SphereEngine::Request::FETCH_SUBMISSION_ENDPOINT.sub(':id', id.to_s) +
+                access_token.to_s)
+      JSON.parse Net::HTTP.get(uri)
+    end
   end
 end
