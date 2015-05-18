@@ -58,4 +58,26 @@ describe SphereEngine::SphereEngineClient do
       expect(@response['11']).to eq "C (gcc-4.9.2)"
     end
   end
+
+  describe '#send_submission' do
+    before :each do
+      stub_request(:post, SphereEngine::Request::BASE_URL +
+                          SphereEngine::Request::SUBMISSIONS_ENDPOINT + @client.access_token.to_s).
+      to_return(body: fixture('submissions_response.json'))
+      @response = @client.send_submission(nil, 11, nil)
+    end
+
+    it 'should make submissions request to api' do
+      expect(WebMock).to have_requested(:post, SphereEngine::Request::BASE_URL +
+                                               SphereEngine::Request::SUBMISSIONS_ENDPOINT + @client.access_token.to_s)
+    end
+
+    it 'should get valid response' do
+      expect(@response).to be_an_instance_of Hash
+    end
+
+    it 'should get valid response content' do
+      expect(@response.key?('id')).to eq true
+    end
+  end
 end

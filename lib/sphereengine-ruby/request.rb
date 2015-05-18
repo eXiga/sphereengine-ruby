@@ -1,7 +1,9 @@
 module SphereEngine
   module Request
     BASE_URL = 'http://api.compilers.sphere-engine.com/api/v3'
-    TEST_ENDPOINT = '/test?access_token='
-    LANGUAGES_ENDPOINT = '/languages?access_token='
+    ACCESS_TOKEN = 'access_token='
+    TEST_ENDPOINT = '/test?' + ACCESS_TOKEN
+    LANGUAGES_ENDPOINT = '/languages?' + ACCESS_TOKEN
+    SUBMISSIONS_ENDPOINT = '/submissions?' + ACCESS_TOKEN
   end
 end
