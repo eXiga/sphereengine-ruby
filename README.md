@@ -13,8 +13,9 @@ A Ruby interface to the SphereEngine API.
 Contribution
 ------------
 
-There are one thing left I want to add in this repo:
+There are several things left I want to add in this repo:
 
 * Problems API
+* Documentation
 
 If you have some ideas about this gem - feel free to create pull request.
