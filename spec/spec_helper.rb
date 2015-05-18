@@ -12,3 +12,11 @@ end
 
 require 'webmock/rspec'
 WebMock.disable_net_connect!(allow: 'coveralls.io')
+
+def fixture_path
+  File.expand_path('../fixtures', __FILE__)
+end
+
+def fixture(file)
+  File.new(fixture_path + '/' + file)
+end

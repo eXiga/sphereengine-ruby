@@ -1,5 +1,6 @@
 module SphereEngine
   module Request
-    BASE_URL = 'https://api.compilers.sphere-engine.com/api/v3'
+    BASE_URL = 'http://api.compilers.sphere-engine.com/api/v3'
+    TEST_ENDPOINT = '/test?access_token='
   end
 end

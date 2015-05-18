@@ -2,7 +2,6 @@ $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 require 'sphereengine-ruby/version'
 
 Gem::Specification.new do |s|
-  s.add_dependency 'http'
   s.name = 'sphereengine-ruby'
   s.version = SphereEngine::Version::STRING
   s.platform = Gem::Platform::RUBY
