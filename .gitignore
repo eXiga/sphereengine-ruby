@@ -5,6 +5,7 @@
 .yardoc
 Gemfile.lock
 coverage/*
+.coveralls.yml
 doc/*
 log/*
 measurement/*

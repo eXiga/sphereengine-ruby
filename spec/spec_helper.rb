@@ -1,8 +1,8 @@
-require 'sphereengine-ruby'
-require 'rspec'
-
 require 'coveralls'
 Coveralls.wear!
+
+require 'sphereengine-ruby'
+require 'rspec'
 
 SimpleCov.formatters = [SimpleCov::Formatter::HTMLFormatter, Coveralls::SimpleCov::Formatter]
 SimpleCov.start do
